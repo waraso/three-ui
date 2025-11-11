@@ -19,9 +19,16 @@
     <canvas id="bg-canvas" class="absolute inset-0 w-full h-full z-0 block"></canvas>
 
     <!-- UI -->
-    <div id="game-ui" class="absolute top-4 left-4 z-10 space-y-2">
-      <button id="color-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">キューブの色を変える</button>
-      <button id="spin-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700">一瞬加速</button>
+    <div id="game-ui" class="absolute inset-0 w-full h-full z-10">
+      <div class="absolute top-4 left-4">
+        <button id="color-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">キューブの色を変える</button>
+        <button id="spin-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700">一瞬加速</button>
+      </div>
+      <div class="absolute bottom-4 left-4">
+        <button id="minus-btn" class="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700">マイナス</button>
+        <span id="count" class="text-white text-xl">0</span>
+        <button id="plus-btn" class="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700">プラス</button>
+      </div>
     </div>
   </div>
 
@@ -49,6 +56,8 @@
 
     let rotationSpeed = 0.01;
     let targetSpeed = rotationSpeed;
+
+    let count = 0;
 
     function animate() {
       requestAnimationFrame(animate);
@@ -80,6 +89,16 @@
       setTimeout(() => {
         targetSpeed = 0.01;
       }, 500);
+    });
+
+    document.getElementById('minus-btn').addEventListener('click', () => {
+      count--;
+      document.getElementById('count').textContent = count;
+    });
+
+    document.getElementById('plus-btn').addEventListener('click', () => {
+      count++;
+      document.getElementById('count').textContent = count;
     });
   </script>
 </body>
